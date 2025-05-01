@@ -1,7 +1,30 @@
 #ifndef PLAYMENU_H
 #define PLAYMENU_H
 
-char* playOpts[5]={"Deck","Orientation","Repeat","Timer","Back"};
+char* playOptsRaw[5]={"Deck:","Timer","Repeat:","Orientation:","PLAY"};
+
+void assignPlayOpts(char*** playOpts)
+{
+	(*playOpts)=malloc(5*sizeof(char*));
+	for(int i=0;i<5;i++)
+	{
+		(*playOpts)[i]=malloc(strlen(playOptsRaw[i])*sizeof(char));
+		strcpy((*playOpts)[i],playOptsRaw[i]);
+	}
+}
+
+void catDeckName(char*** playOpts,struct GAMERULES gameRules,int prevDeckSize)
+{
+	if(strlen(gameRules.DECK.NAME)>0)
+	{
+		(*playOpts)[0]=realloc((*playOpts)[0],strlen(playOptsRaw[0])+strlen(gameRules.DECK.NAME)*sizeof(char));
+		memset((*playOpts)[0],'\0',strlen((*playOpts)[0]));
+		strcpy((*playOpts)[0],playOptsRaw[0]);
+		strcat((*playOpts)[0],gameRules.DECK.NAME);
+	}
+}
+
+
 
 void playMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 {
@@ -9,10 +32,13 @@ void playMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	refresh();
 	int key;
 	int menuState=0;
-	char tempState[8];
 	int highlight=0;
-	int currentMenu[2]={0,0};
 	int pathCount=0;
+	int currentMenu[2]={0,0};
+	char** playOpts;
+	assignPlayOpts(&playOpts);
+	int prevDeckSize=0;
+	catDeckName(&playOpts,(*gameRules),prevDeckSize);
 	while(menuState>=0)
 	{
 		mvwprintw((*titleWin),1,1,"Game Settings:\n");
@@ -53,6 +79,8 @@ void playMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 				if(highlight==0)
 				{
 					decksMenu(&(*menuWin),&(*titleWin),&(*gameRules));
+					catDeckName(&playOpts,(*gameRules),prevDeckSize);
+					prevDeckSize=strlen(gameRules->DECK.NAME);
 				}else if(highlight==1)
 				{
 					//deckBuilder();

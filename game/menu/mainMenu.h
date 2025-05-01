@@ -15,7 +15,7 @@ void menu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	int pathCount=0;
 	while(menuState>=0)
 	{
-		mvwprintw((*titleWin),1,1,"Terminal Flash Cards v2.0\n");
+		mvwprintw((*titleWin),1,1,"Terminal Flash Cards v2.0");
 		wrefresh((*titleWin));
 		wclear((*menuWin));
 		for(int i=0;i<6;i++)
