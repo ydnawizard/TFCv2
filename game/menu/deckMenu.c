@@ -19,8 +19,8 @@ void decksMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	readDirectory(&decks,deckPath);
 	while(menuState>=0)
 	{
-		mvwprintw((*titleWin),1,1,"Selected Deck:\n");
-		mvwprintw((*titleWin),1,16,gameRules->DECK.NAME,"\n");
+		mvwprintw((*titleWin),1,1,"Selected Deck: ");
+		mvwprintw((*titleWin),1,16,gameRules->DECK.NAME);
 		wrefresh((*titleWin));
 		wclear((*menuWin));
 		int i=0;
@@ -97,8 +97,8 @@ void decksMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 				{
 					menuState=-1;
 				}
-			default:
-				break;
+			case '\n':
+				menuState-=1;
 		}
 	}
 }

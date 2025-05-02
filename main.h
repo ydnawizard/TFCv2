@@ -3,26 +3,37 @@
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>
+#include <stdbool.h>
+#include <time.h>
 
 //NCURSES
 #include <curses.h>
 
 //Data Structures
-#include "game/data/card.h"
-#include "game/data/deck.h"
-#include "game/data/gameRules.h"
+#include "game/data/card.c"
+#include "game/data/deck.c"
+#include "game/data/gameRules.c"
+
+//Utilities
+#include "game/util/bool.c"
+#include "game/util/inputHandler.c"
 
 //File Read Utilities
-#include "game/read/readDirectory.h"
-#include "game/read/readTXT.h"
-#include "game/read/readDecks.h"
-#include "game/read/readDeck.h"
+#include "game/util/read/readDirectory.c"
+#include "game/util/read/readTXT.c"
+#include "game/util/read/readDecks.c"
+#include "game/util/read/readDeck.c"
+
+//Game Loop
+#include "game/main/game.c"
 
 //Menu Handling
 
 //Play Menu & its submenus
-#include "game/menu/deckMenu.h"
-#include "game/menu/playMenu.h"
+#include "game/menu/deckMenu.c"
+#include "game/menu/timerMenu.c"
+#include "game/menu/playMenu.c"
+
 
 //Main Menu
-#include "game/menu/mainMenu.h"
+#include "game/menu/mainMenu.c"

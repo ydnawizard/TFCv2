@@ -1,6 +1,3 @@
-#ifndef READER_H
-#define READER_H
-
 
 //Define TXT struct that gets passed out
 struct TXT
@@ -127,4 +124,3 @@ void readTXT(struct TXT* txt,char* filePath)
 	
 
 
-#endif

@@ -1,6 +1,3 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
-
 char* mainMenu[6]={"Play","Deck Builder","Client Settings","Stats","Info","Quit\n"};
 
 void menu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
@@ -15,7 +12,8 @@ void menu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	int pathCount=0;
 	while(menuState>=0)
 	{
-		mvwprintw((*titleWin),1,1,"Terminal Flash Cards v2.0");
+		wclear((*titleWin));
+		mvwprintw((*titleWin),1,1,"Terminal Flash Cards v2.0\n");
 		wrefresh((*titleWin));
 		wclear((*menuWin));
 		for(int i=0;i<6;i++)
@@ -76,4 +74,3 @@ void menu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	}
 }
 
-#endif
