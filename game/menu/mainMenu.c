@@ -5,12 +5,11 @@ void menu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	clear();
 	refresh();
 	int key;
-	int menuState=0;
 	char tempState[8];
 	int highlight=0;
 	int currentMenu[2]={0,0};
 	int pathCount=0;
-	while(menuState>=0)
+	while((*gameRules).PLAY==0)
 	{
 		wclear((*titleWin));
 		mvwprintw((*titleWin),1,1,"Terminal Flash Cards v2.0\n");
@@ -50,6 +49,7 @@ void menu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 			case KEY_RIGHT:
 				if(highlight==0)
 				{
+					(*gameRules).PLAY=1;
 					playMenu(&(*menuWin),&(*titleWin),&(*gameRules));
 				}else if(highlight==1)
 				{

@@ -74,7 +74,7 @@ void timerMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	//Cat time values
 	catTimeFields(&timerOpts,(*gameRules));
 	//While menuState >= 0
-	while(menuState>=0)
+	while((*gameRules).PLAY==3)
 	{
 		//Print title
 		mvwprintw((*titleWin),1,1,"Timer Settings: (Enter To Accept)");
@@ -143,7 +143,7 @@ void timerMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 				}
 				break;
 			case '\n':
-				menuState-=1;
+				(*gameRules).PLAY=1;
 		}
 	}
 }

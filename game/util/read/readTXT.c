@@ -93,6 +93,7 @@ void readLinesToTXT(struct TXT* txt,FILE* file)
 	{
 		if(character=='\n')
 		{
+			readCharToLine(line,'\0',charCount);
 			readLineToTXT(&(*txt),line,lineCount);
 			memset(line,'\0',strlen(line));
 			lineCount+=1;

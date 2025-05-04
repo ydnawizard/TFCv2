@@ -8,6 +8,8 @@ int main()
 	gameRules.SHUFFLE=false;
 	gameRules.REPEAT=false;
 	gameRules.ORIENTATION=1;
+	gameRules.PLAY=0;
+	int menuState=0;
 	struct TXT test;
 	initscr();
 	noecho();
@@ -18,6 +20,13 @@ int main()
 	WINDOW* titleWin=newwin(3,75,.30*yMax,.333*xMax);
 	WINDOW* menuWin=newwin(20,35,.35*yMax,.333*xMax);
 	keypad(menuWin,true);
-	menu(&menuWin,&titleWin,&gameRules);
+	while(gameRules.PLAY>=0)
+	{
+		menu(&menuWin,&titleWin,&gameRules);
+		playMenu(&menuWin,&titleWin,&gameRules);
+		decksMenu(&menuWin,&titleWin,&gameRules);
+		timerMenu(&menuWin,&titleWin,&gameRules);
+	}
+
 }
  

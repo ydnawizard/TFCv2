@@ -13,10 +13,12 @@
 #include "game/data/card.c"
 #include "game/data/deck.c"
 #include "game/data/gameRules.c"
+#include "game/data/gameState.c"
 
 //Utilities
 #include "game/util/bool.c"
-#include "game/util/inputHandler.c"
+#include "game/util/input.c"
+#include "game/util/time.c"
 
 //File Read Utilities
 #include "game/util/read/readDirectory.c"
@@ -25,6 +27,8 @@
 #include "game/util/read/readDeck.c"
 
 //Game Loop
+#include "game/main/cardStackHandler.c"
+#include "game/main/clockHandler.c"
 #include "game/main/game.c"
 
 //Menu Handling

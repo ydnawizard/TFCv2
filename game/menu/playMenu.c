@@ -107,7 +107,7 @@ void playMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 	catShuffleState(&playOpts,(*gameRules));
 	catRepeatState(&playOpts,(*gameRules));
 	catOrientation(&playOpts,(*gameRules));
-	while(menuState>=0)
+	while((*gameRules).PLAY==1)
 	{
 		wclear((*titleWin));                              
 		mvwprintw((*titleWin),1,1,"Game Settings:\n");
@@ -136,7 +136,7 @@ void playMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 					break;
 				}
 			case KEY_DOWN:
-				if(highlight==6)
+				if(highlight==5)
 				{
 					break;
 				}else
@@ -147,11 +147,13 @@ void playMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 			case KEY_RIGHT:
 				if(highlight==0)
 				{
+					(*gameRules).PLAY=2;
 					decksMenu(&(*menuWin),&(*titleWin),&(*gameRules));
 					catDeckName(&playOpts,(*gameRules),prevDeckSize);
 					prevDeckSize=strlen(gameRules->DECK.NAME);
 				}else if(highlight==1)
 				{
+					(*gameRules).PLAY=3;
 					timerMenu(&(*menuWin),&(*titleWin),&(*gameRules));
 					catTimerOpts(&playOpts,(*gameRules));
 				}else if(highlight==2)
@@ -168,11 +170,12 @@ void playMenu(WINDOW** menuWin,WINDOW** titleWin,struct GAMERULES* gameRules)
 					catOrientation(&playOpts,(*gameRules));
 				}else if(highlight==5)
 				{
-					playGame((*gameRules),playOpts);
+					(*gameRules).PLAY=0;
+					playGame((*menuWin),(*titleWin),(*gameRules),playOpts);
 				}
 				break;
 			case KEY_LEFT:
-				menuState=-1;
+				(*gameRules).PLAY=-1;
 			default:
 				break;
 		}

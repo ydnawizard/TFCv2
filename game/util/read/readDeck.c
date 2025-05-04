@@ -1,7 +1,3 @@
-#ifndef READDECK_H
-#define READDECK_H
-
-
 void readDeck(struct DECK* deck,char* deckName)
 {
 	deck->CARDS=(struct CARD*)malloc(sizeof(struct CARD));
@@ -24,5 +20,3 @@ void readDeck(struct DECK* deck,char* deckName)
 	deck->CARD_COUNT=cardCount;
 }
 
-
-#endif
